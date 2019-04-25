@@ -54,6 +54,7 @@ func main() {
 			// break problemloop // if we don't want to use a return statememnt we can break out of the loop using the
 			// break statement on the label of the loop
 		case answer := <-answerChannel:
+			answer = strings.ToLower(answer)
 			if answer == p.answer {
 				correct++
 			}
@@ -69,7 +70,7 @@ func parseLines(lines [][]string) []problem {
 	for i, line := range lines {
 		ret[i] = problem{
 			question: line[0],
-			answer:   strings.TrimSpace(line[1]), // to ensure data is clean from the csv
+			answer:   strings.TrimSpace(strings.ToLower(line[1])), // to ensure data is clean from the csv
 		}
 	}
 	return ret
